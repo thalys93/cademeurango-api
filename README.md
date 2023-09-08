@@ -1,9 +1,12 @@
-# CadeMeuRango-API
-[![Java](https://img.shields.io/badge/-Java-007396?logo=java&logoColor=white&style=flat)](https://www.java.com/)
-[![Spring Boot](https://img.shields.io/badge/-Spring%20Boot-6DB33F?logo=spring-boot&logoColor=white&style=flat)](https://spring.io/projects/spring-boot/)<br/>
+# CadeMeuRango-API - Node
+[![Node.js](https://img.shields.io/badge/-Node.js-007396?logo=node&logoColor=white&style=flat)](https://nodejs.org/en/)
 
-~~API criada em Java que consiste em adicionar, excluir e alterar receitas e dicas culinarias. Feito para o projeto da disciplina WEB 3 da QI~~
 
-# DESATIVADO 
+## Sobre o projeto
+API do projeto CadeMeuRango é essencial para o uso em conjunto com a aplicação do Cade Meu Rango, que tem como objetivo, ser um site de receitas.
 
-# API Mais Recente : [CadeMeuRango API em Node](https://github.com/Little-Tooth-Tecnologies/cadeMeuRango-API-NodeJS)
+---
+[![CadeMeuRango](https://img.shields.io/badge/-CadeMeuRango_Front_End-FD6543?style=flat)](https://github.com/Little-Tooth-Tecnologies/cade-meu-rango-front)
+---
+
+**Branch em Desenvolvimento**
