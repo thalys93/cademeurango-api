@@ -1,0 +1,42 @@
+{
+  "name": "cademeurango-api",
+  "version": "1.0.0",
+  "description": "api to use with front end app cade meu rango , recipes site",
+  "type": "module",
+  "main": "src/server.js",
+  "engines": {
+    "node": "16.13.0"
+  },
+  "scripts": {
+    "dev": "nodemon server.js",
+    "build": "tsup src",
+    "start": "node dist/server.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Little-Tooth-Tecnologies/cademeurango-api.git"
+  },
+  "keywords": [
+    "api",
+    "express",
+    "node.js",
+    "mongoDB"
+  ],
+  "author": "Little Tooth Tecnologies",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Little-Tooth-Tecnologies/cademeurango-api/issues"
+  },
+  "homepage": "https://github.com/Little-Tooth-Tecnologies/cademeurango-api#readme",
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^6.0.0",
+    "mongoose": "^7.5.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "nodemon": "^3.0.1",
+    "tsup": "^7.2.0"
+  }
+}
