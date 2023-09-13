@@ -12,7 +12,12 @@ class RecipeController {
     static ListRecipeById = (req, res) => {
         Recipes
             .findById(req.params.id)
-            .then((recipe) => { res.status(200).json(recipe) })
+            .then((recipe) => {
+                if (!recipe) {
+                    res.status(404).send({ message: `Receita Não Localizada: ${recipe}` })
+                } else
+                    res.status(200).json(recipe)
+            })
             .catch((err) => { res.status(400).send({ message: `Falha ao Localizar Receita ${err.message}` }) });
     }
 

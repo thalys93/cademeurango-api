@@ -12,9 +12,15 @@ class UserController {
     static ListUserById = (req, res) => {
         Users
             .findById(req.params.id)
-            .then((user) => { res.status(200).json(user) })
-            .catch((err) => { res.status(400).send({ message: `Falha ao Localizar Usuário ${err.message}` }) });
+            .then((user) => {
+                if (!user) {
+                    res.status(404).send({ message: `Usuário Não Localizado: ${user}` })
+                } else 
+                res.status(200).json(user)
+            })
+            .catch((err) => { res.status(500).send({ message: `Falha ao Listar Usuário ${err.message}` }) });
     }
+
 
     static createUser = (req, res) => {
         const user = new Users(req.body);

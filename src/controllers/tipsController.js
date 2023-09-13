@@ -12,7 +12,12 @@ class TipController {
     static ListTipById = (req, res) => {
         Tips
             .findById(req.params.id)
-            .then((tip) => { res.status(200).json(tip) })
+            .then((tip) => {
+                if (!tip) {
+                    res.status(404).send({ message: `Dica Não Localizada: ${tip}` })
+                } else
+                    res.status(200).json(tip)
+            })
             .catch((err) => { res.status(400).send({ message: `Falha ao Localizar Dica ${err.message}` }) });
     }
 

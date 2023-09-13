@@ -12,7 +12,11 @@ class BookController {
     static ListBookById = (req, res) => {
         Books
         .findById(req.params.id)        
-        .then((book) => { res.status(200).json(book) })
+        .then((book) => { 
+            if (!book) {
+                res.status(404).send({message: `Livro Não Localizado: ${book}`})
+            } else
+            res.status(200).json(book) })
         .catch((err) => {res.status(400).send({message: `Falha ao Localizar Livro ${err.message}`})});
     }
 
