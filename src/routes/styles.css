@@ -1,0 +1,27 @@
+body{
+    transition: 0.5s;
+}
+
+.item{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.item:hover{
+    color: red;
+}
+
+.imgBG{
+    background-image: url(https://res.cloudinary.com/dh39ahmpj/image/upload/c_thumb,w_2844,h_718,g_auto/v1695040147/Cad%C3%AA%20Meu%20Rango/banner_utjdxx.png);
+    background-size: cover;
+    object-fit: cover;
+}
+
+.titleBanner{
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    padding: 2rem;
+    text-align: center;
+    user-select: none;
+}

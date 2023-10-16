@@ -1,9 +1,13 @@
-import mongoose from "mongoose";
-import dotenv from 'dotenv';
-dotenv.config();
+const ConfigDB = {
+    dialect: 'mysql',
+    host: 'localhost' || process.env.DB_HOST,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    define: {
+        timestamps: true,
+        underscored: true,
+    }
+};
 
-mongoose.connect(process.env.MONGODB_URI)
-
-let database = mongoose.connection;
-
-export default database;
+module.exports = ConfigDB;

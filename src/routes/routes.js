@@ -1,20 +1,20 @@
-import express from "express";
-import tips from "./TipsRoutes.js";
-import users from "./UserRoutes.js";
-import recipes from "./RecipesRoutes.js";
-
+const express = require("express");
+const tips = require("./TipsRoutes.js");
+const users = require("./UserRoutes.js");
+const recipes = require("./RecipesRoutes.js");
+const path = require("path");
 
 const routes = (app) => {
     app.route('/').get((req, res) => {
-        res.status(200).send("API Funcional!");
-    })
+        res.status(200).sendFile(path.join(__dirname , '..' ,  'views' , "index.html"));
+    });
 
     app.use(
         express.json(),
-        tips,
-        users,
-        recipes        
-    )
-}
+        // tips,
+        // users,
+        // recipes
+    );
+};
 
-export default routes
+module.exports = routes;
