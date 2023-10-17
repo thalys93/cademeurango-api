@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&family=Satisfy&display=swap');
+
+body{
+    transition: 0.5s;
+}
+
+a{
+    text-decoration: none;
+    color: #334155;
+    transition: 0.5s;
+}
+
+.item{        
+    transition: 0.5s;
+}
+
+.item:hover{    
+    scale: 1.025;
+}
+a:hover{
+    color: #FD6543;
+    scale: 1.025;
+    cursor: pointer;
+
+}
+
+.imgBG{
+    background-image: url(https://res.cloudinary.com/dh39ahmpj/image/upload/c_thumb,w_2844,h_718,g_auto/v1695040147/Cad%C3%AA%20Meu%20Rango/banner_utjdxx.png);
+    background-size: cover;
+    object-fit: cover;
+}
+
+.titleBanner{
+    position: relative;    
+    padding: 2rem;
+    text-align: center;
+    user-select: none;
+}
+
+.orange-primary{
+    color: #FD6543;
+}
+
+.orange-secondary{
+    color: #b32607;
+}
+
+.bg-primaryO{
+    background-color: #FD6543;
+}
+
+.txtSatisfy{
+    font-family: 'Satisfy', cursive;
+}
+
+.txtBanner{
+    text-shadow: 0px 4px 4px #000000;
+}
+
+.txtRubik{
+    font-family: 'Rubik', sans-serif;
+}
+
