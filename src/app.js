@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const routes = require("./routes/routes.js");
 const path = require("path");
-const database = require('./database/migrations/index.js');
 
 const app = express();
 

@@ -1,50 +1,106 @@
-// import Recipes from './../models/Recipe.js';
+const Recipe = require('./../models/Recipe.js');
 
-// class RecipeController {
+class RecipeController {
 
-//     static listRecipes = (req, res) => {
-//         Recipes
-//             .find()
-//             .then((recipes) => { res.status(200).json(recipes) })
-//             .catch((err) => { res.status(500).send({ message: `Falha ao Listar Receitas ${err.message}` }) });
-//     };
+    findRecipes = async (req, res) => {
+        try {
+            const recipes = await Recipe.findAll();
+            return res.status(200).json(recipes);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
 
-//     static ListRecipeById = (req, res) => {
-//         Recipes
-//             .findById(req.params.id)
-//             .then((recipe) => {
-//                 if (!recipe) {
-//                     res.status(404).send({ message: `Receita Não Localizada: ${recipe}` })
-//                 } else
-//                     res.status(200).json(recipe)
-//             })
-//             .catch((err) => { res.status(400).send({ message: `Falha ao Localizar Receita ${err.message}` }) });
-//     }
+    findRecipeById = async (req, res) => {
+        const { id } = req.params;
+        try {
+            const recipe = await Recipe.findOne({
+                where: {
+                    id: id
+                }
+            });
+            if (!recipe) {
+                return res.status(404).json({ message: `Receita com o ID ${id} Não Foi Encontrada` });
+            } else {
+                return res.status(200).json(recipe);
+            }
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
 
-//     static createRecipe = (req, res) => {
-//         const recipe = new Recipes(req.body);
-//         recipe
-//             .save()
-//             .then((recipe) => { res.status(201).json(recipe) })
-//             .catch((err) => { res.status(400).send({ message: `Falha ao Criar Uma Receita ${err.message}` }) });
-//     }
+    createRecipe = async (req, res) => {
+        const recipe = req.body;
+        try {
+            const newRecipe = await Recipe.create(recipe);
+            return res.status(200).json(newRecipe);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
 
-//     static updateRecipe = (req, res) => {
-//         const recipe = new Recipes(req.body);
-//         recipe
-//             .findByIdAndUpdate(req.params.id, recipe)
-//             .then((recipe) => { res.status(200).json(recipe) })
-//             .catch((err) => { res.status(400).send({ message: `Falha ao Atualizar Receita ${err.message}` }) });
-//     }
+    updateRecipe = async (req, res) => {
+        const { id } = req.params;
+        const newData = req.body;
 
-//     static deleteRecipe = (req, res) => {
-//         Recipes
-//             .findByIdAndDelete(req.params.id)
-//             .then((recipe) => { res.status(200).json(recipe) })
-//             .catch((err) => { res.status(400).send({ message: `Falha ao Deletar Receita ${err.message}` }) });
-//     }
+        try {
 
-// }
+            for (const key in newData) {
+                if (newData[key] === "" || newData[key] === null || newData[key].trim === "") {
+                    return res.status(400).json({ message: `Não é possível fazer uma requisição com campos vazios` });
+                }
+            }
 
-// export default RecipeController;
+            if (!newData) {
+                return res.status(400).json({ message: `Você Não Pode Fazer uma requisição Vazia` });
+            } else (
+            await Recipe.update(newData, {
+                where: {
+                    id: id
+                }
+            })
+            )
+            const updatedRecipe = await Recipe.findOne({
+                where: {
+                    id: id
+                }
+            });
+
+            if (!updatedRecipe) {
+                return res.status(404).json({ message: `Receita com o ID ${id} não encontrada` });
+            }
+
+            
+            return res.status(200).json(updatedRecipe);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
+    deleteRecipe = async (req, res) => {
+        const { id } = req.params;
+        try {
+            const recipe = await Recipe.findOne({
+                where: {
+                    id: id
+                }
+            });
+
+            if (!recipe) {
+                return res.status(404).json({ message: `Receita com o ID ${id} Não Foi Encontrada` });
+            } else {
+                await Recipe.destroy({
+                    where: {
+                        id: id
+                    }
+                });
+                return res.status(200).json({ message: `Receita ${id} deletada`});
+            }
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+}
+
+module.exports = new RecipeController();
 
