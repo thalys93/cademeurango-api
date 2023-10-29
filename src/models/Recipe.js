@@ -1,8 +1,13 @@
 const Sequelize = require('sequelize');
-const database = require("../config/db_config.js")
+const database = require("../config/db_config.js");
 
-const Recipe = database.define("recipe", {
-    id: { 
+// const user = require('./User.js');
+const ingredient = require('./Ingredient.js');
+const instruction = require('./Instruction.js');
+
+
+const recipe = database.define("recipe", {
+    id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -24,13 +29,22 @@ const Recipe = database.define("recipe", {
         type: Sequelize.STRING,
         allowNull: false
     }
-    }
+}
 )
 
-module.exports = Recipe;
+recipe.associate = (models) => {
+
+recipe.hasMany(models.ingredient, {     
+    as: 'ingredients' });
+
+recipe.hasMany(models.instruction, { 
+    as: 'instructions' })
+
+}
+
+module.exports = recipe;
 
 
 /* TODO: implementar os relacionamentos entre as tabelas
-    - Adicionar Autor (Users), baseado no nome do usuário lá do firebase    
-    - adicionar Relação entre receita e ingredientes (1:N)
-*/    
+    - Adicionar Autor (Users), baseado no nome do usuário lá do firebase        
+*/

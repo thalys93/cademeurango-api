@@ -1,4 +1,7 @@
+// const { Sequelize } = require('sequelize');
 const Recipe = require('./../models/Recipe.js');
+const sequelize = require('../config/db_config.js');
+const Ingredient = require('../models/Ingredient.js');
 
 class RecipeController {
 
@@ -30,10 +33,10 @@ class RecipeController {
     }
 
     createRecipe = async (req, res) => {
-        const recipe = req.body;
-        try {
-            const newRecipe = await Recipe.create(recipe);
-            return res.status(200).json(newRecipe);
+        const recipe = req.body;        
+        try {            
+            const newRecipe = await Recipe.create(recipe);     
+            return res.status(200).json(newRecipe);       
         } catch (error) {
             return res.status(500).json(error.message);
         }
