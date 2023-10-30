@@ -1,7 +1,7 @@
 const express = require("express");
 const tips = require("./TipsRoutes.js");
 const recipes = require("./RecipesRoutes.js");
-const ingredient = require("./IngredientRoutes.js")
+const user = require('./UserRoutes.js')
 const path = require("path");
 
 const routes = (app) => {    
@@ -12,9 +12,9 @@ const routes = (app) => {
 
     app.use(express.json());
 
-    app.use("/api/", tips)
+    app.use("/api/", tips)    
     app.use("/api/", recipes)    
-    app.use("/api/", ingredient)
+    app.use("/api", user)
 
 };
 

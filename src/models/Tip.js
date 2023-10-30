@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 const database = require("../config/db_config.js")
+const user = require('./User.js');
+
 
 const Tip = database.define("tip", {
     id: { 
@@ -14,6 +16,11 @@ const Tip = database.define("tip", {
     },
     description: {
         type: Sequelize.STRING,
+        allowNull: false
+    },
+    authorID:{
+        type: Sequelize.INTEGER,
+        references: { model: user, key: 'id' },
         allowNull: false
     }
     })

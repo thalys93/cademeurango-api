@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const database = require("../config/db_config.js");
+const user = require('./User.js');
 
-// const user = require('./User.js');
-const ingredient = require('./Ingredient.js');
-const instruction = require('./Instruction.js');
+// const ingredient = require('./Ingredient.js');
+// const instruction = require('./Instruction.js');
 
 
 const recipe = database.define("recipe", {
@@ -25,22 +25,21 @@ const recipe = database.define("recipe", {
         type: Sequelize.STRING,
         allowNull: false
     },
-    author: {
-        type: Sequelize.STRING,
+    instructions: {
+        type: Sequelize.ARRAY(Sequelize.TEXT),
+        allowNull: false
+    },
+    ingredients: {
+        type: Sequelize.ARRAY(Sequelize.TEXT),
+        allowNull: false
+    },        
+    authorID:{
+        type: Sequelize.INTEGER,
+        references: { model: user, key: 'id' },
         allowNull: false
     }
 }
 )
-
-recipe.associate = (models) => {
-
-recipe.hasMany(models.ingredient, {     
-    as: 'ingredients' });
-
-recipe.hasMany(models.instruction, { 
-    as: 'instructions' })
-
-}
 
 module.exports = recipe;
 

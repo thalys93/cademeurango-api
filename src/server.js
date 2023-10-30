@@ -14,7 +14,7 @@ dotenv.config();
     if (database.authenticate()) {
         console.log('Conectado ao banco de dados');
     } else {
-        console.log('Erro ao conectar ao banco de dados');
+        console.log('Erro ao conectar ao banco de dados : ' , error);
     }
 
     console.log("##########################")
