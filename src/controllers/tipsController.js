@@ -12,16 +12,16 @@ class TipController {
         }
     }
 
-    findTipByID = async (req, res) => {
-        const { id } = req.params;
+    findTipByUUID = async (req, res) => {
+        const { UUID } = req.params;
         try {
             const tip = await Tip.findOne({
                 where: {
-                    id: id
+                    UUID: UUID
                 }
             });
             if (!tip) {
-                return res.status(404).json({ message: `Dica com o ID ${id} não encontrada` });
+                return res.status(404).json({ message: `Dica com o UUID ${UUID} não encontrada` });
             } else {
                 return res.status(200).json(tip);
             }
@@ -42,7 +42,7 @@ class TipController {
     }
 
     updateTip = async (req, res) => {
-        const { id } = req.params;
+        const { UUID } = req.params;
         const newData = req.body;
         try {
 
@@ -57,17 +57,17 @@ class TipController {
             } else {            
                     await Tip.update(newData, {
                         where: {
-                            id: id
+                            UUID: UUID
                         }
                     })}
             const updatedTip = await Tip.findOne({
                 where: {
-                    id: id
+                    UUID: UUID
                 }
             });
 
             if(!updatedTip) {
-                return res.status(404).json({ message: `Dica com o ID ${id} não encontrada` });
+                return res.status(404).json({ message: `Dica com o UUID ${UUID} não encontrada` });
             }
             
             return res.status(200).json(updatedTip);
@@ -77,25 +77,25 @@ class TipController {
     }
 
     deleteTip = async (req, res) => {
-        const { id } = req.params;
+        const { UUID } = req.params;
         try {
 
             const tip = await Tip.findOne({
                 where: {
-                    id: id
+                    UUID: UUID
                 }
             });
 
             if (!tip) {
-                return res.status(404).json({ message: `Dica com o ID ${id} Não Encontrada` });
+                return res.status(404).json({ message: `Dica com o UUID ${UUID} Não Encontrada` });
             } else {
                 await Tip.destroy({
                     where: {
-                        id: id
+                        UUID: UUID
                     }
                 })
             }
-            return res.status(200).json({ message: `Dica com o ID ${id} Deletada` });
+            return res.status(200).json({ message: `Dica com o UUID ${UUID} Deletada` });
         } catch (error) {
             return res.status(500).json(error.message);
         }

@@ -12,16 +12,16 @@ class UserController {
         }
     }
 
-    findUserByID = async (req, res) => {
-        const { id } = req.params;
+    findUserByUUID = async (req, res) => {
+        const { UUID } = req.params;
         try {
             const user = await User.findOne({
                 where: {
-                    id: id
+                    UUID: UUID
                 }
             });
             if (!user) {
-                return res.status(404).json({ message: `Usuário com o ID ${id} não encontrado` });
+                return res.status(404).json({ message: `Usuário com o UUID ${UUID} não encontrado` });
             } else {
                 return res.status(200).json(user);
             }
@@ -41,7 +41,7 @@ class UserController {
     }
 
     updateUser = async (req, res) => {
-        const { id } = req.params;
+        const { UUID } = req.params;
         const newData = req.body;
         try {
             for (const key in newData) {
@@ -55,18 +55,18 @@ class UserController {
             } else {
                 await User.update(newData, {
                     where: {
-                        id: id
+                        UUID: UUID
                     }
                 });
             }
             const updatedUser = await User.findOne({
                 where: {
-                    id: id
+                    UUID: UUID
                 }
             });
 
             if (!updatedUser) {
-                return res.status(404).json({ message: `Usuário com o ID ${id} não encontrado` });
+                return res.status(404).json({ message: `Usuário com o UUID ${UUID} não encontrado` });
             }
 
             return res.status(200).json(updatedUser);
@@ -76,24 +76,24 @@ class UserController {
     }
 
     deleteUser = async (req, res) => {
-        const { id } = req.params;
+        const { UUID } = req.params;
         try {
             const user = await User.findOne({
                 where: {
-                    id: id
+                    UUID: UUID
                 }
             });
 
             if (!user) {
-                return res.status(404).json({ message: `Usuário com o ID ${id} não encontrado` });
+                return res.status(404).json({ message: `Usuário com o UUID ${UUID} não encontrado` });
             } else {
                 await User.destroy({
                     where: {
-                        id: id
+                        UUID: UUID
                     }
                 });
             }
-            return res.status(200).json({ message: `Usuário com o ID ${id} deletado` });
+            return res.status(200).json({ message: `Usuário com o UUID ${UUID} deletado` });
         } catch (error) {
             return res.status(500).json(error.message);
         }

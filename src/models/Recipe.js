@@ -7,9 +7,8 @@ const user = require('./User.js');
 
 
 const recipe = database.define("recipe", {
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
+    UUID: {
+        type: Sequelize.STRING,        
         allowNull: false,
         primaryKey: true
     },
@@ -38,7 +37,7 @@ const recipe = database.define("recipe", {
         allowNull: false
     },        
     authorUUID:{
-        type: Sequelize.UUID,
+        type: Sequelize.STRING,
         references: { model: user, key: 'UUID' },
         allowNull: false
     }

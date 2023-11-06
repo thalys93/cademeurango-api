@@ -4,7 +4,7 @@ const database = require('../config/db_config.js');
 
 const user = database.define('user', {
     UUID:{
-        type: Sequelize.UUID,
+        type: Sequelize.STRING,
         primaryKey: true,              
         
     },

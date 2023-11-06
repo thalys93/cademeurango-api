@@ -4,9 +4,8 @@ const user = require('./User.js');
 
 
 const Tip = database.define("tip", {
-    id: { 
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
+    UUID: { 
+        type: Sequelize.STRING,        
         allowNull: false,
         primaryKey: true
     },
@@ -18,8 +17,8 @@ const Tip = database.define("tip", {
         type: Sequelize.STRING,
         allowNull: false
     },
-    authorID:{
-        type: Sequelize.UUID,
+    authorUUID:{
+        type: Sequelize.STRING,
         references: { model: user, key: 'UUID' },
         allowNull: false
     }

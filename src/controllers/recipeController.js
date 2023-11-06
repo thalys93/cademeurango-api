@@ -20,16 +20,16 @@ class RecipeController {
         }
     }
 
-    findRecipeById = async (req, res) => {
-        const { id } = req.params;
+    findRecipeByUUID = async (req, res) => {
+        const { UUID } = req.params;
         try {
             const recipe = await Recipe.findOne({
                 where: {
-                    id: id
+                    UUID: UUID
                 }
             });
             if (!recipe) {
-                return res.status(404).json({ message: `Receita com o ID ${id} Não Foi Encontrada` });
+                return res.status(404).json({ message: `Receita com o UUID ${UUID} Não Foi Encontrada` });
             } else {
                 return res.status(200).json(recipe);
             }
@@ -50,7 +50,7 @@ class RecipeController {
     }
 
     updateRecipe = async (req, res) => {
-        const { id } = req.params;
+        const { UUID } = req.params;
         const newData = req.body;
 
         try {
@@ -66,18 +66,18 @@ class RecipeController {
             } else (
                 await Recipe.update(newData, {
                     where: {
-                        id: id
+                        UUID: UUID
                     }
                 })
             )
             const updatedRecipe = await Recipe.findOne({
                 where: {
-                    id: id
+                    UUID: UUID
                 }
             });
 
             if (!updatedRecipe) {
-                return res.status(404).json({ message: `Receita com o ID ${id} não encontrada` });
+                return res.status(404).json({ message: `Receita com o UUID ${UUID} não encontrada` });
             }
 
 
@@ -88,23 +88,23 @@ class RecipeController {
     }
 
     deleteRecipe = async (req, res) => {
-        const { id } = req.params;
+        const { UUID } = req.params;
         try {
             const recipe = await Recipe.findOne({
                 where: {
-                    id: id
+                    UUID: UUID
                 }
             });
 
             if (!recipe) {
-                return res.status(404).json({ message: `Receita com o ID ${id} Não Foi Encontrada` });
+                return res.status(404).json({ message: `Receita com o UUID ${UUID} Não Foi Encontrada` });
             } else {
                 await Recipe.destroy({
                     where: {
-                        id: id
+                        UUID: UUID
                     }
                 });
-                return res.status(200).json({ message: `Receita ${id} deletada` });
+                return res.status(200).json({ message: `Receita ${UUID} deletada` });
             }
         } catch (error) {
             return res.status(500).json(error.message);
