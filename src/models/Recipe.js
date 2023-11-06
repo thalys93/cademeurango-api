@@ -17,6 +17,10 @@ const recipe = database.define("recipe", {
         type: Sequelize.STRING,
         allowNull: false
     },
+    type:{
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     description: {
         type: Sequelize.STRING,
         allowNull: false
@@ -34,7 +38,7 @@ const recipe = database.define("recipe", {
         allowNull: false
     },        
     authorID:{
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: { model: user, key: 'id' },
         allowNull: false
     }
@@ -42,8 +46,3 @@ const recipe = database.define("recipe", {
 )
 
 module.exports = recipe;
-
-
-/* TODO: implementar os relacionamentos entre as tabelas
-    - Adicionar Autor (Users), baseado no nome do usuário lá do firebase        
-*/
