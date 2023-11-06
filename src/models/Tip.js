@@ -19,15 +19,10 @@ const Tip = database.define("tip", {
         allowNull: false
     },
     authorID:{
-        type: Sequelize.INTEGER,
-        references: { model: user, key: 'id' },
+        type: Sequelize.UUID,
+        references: { model: user, key: 'UUID' },
         allowNull: false
     }
     })
     
     module.exports = Tip;
-
-
-    /* TODO: implementar os relacionamentos entre as tabelas
-    - Adicionar Autor (Users), baseado no nome do usuário lá do firebase    
-    */   

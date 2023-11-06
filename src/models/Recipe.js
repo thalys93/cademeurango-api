@@ -37,9 +37,9 @@ const recipe = database.define("recipe", {
         type: Sequelize.ARRAY(Sequelize.TEXT),
         allowNull: false
     },        
-    authorID:{
-        type: Sequelize.STRING,
-        references: { model: user, key: 'id' },
+    authorUUID:{
+        type: Sequelize.UUID,
+        references: { model: user, key: 'UUID' },
         allowNull: false
     }
 }
