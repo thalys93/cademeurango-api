@@ -12,6 +12,10 @@ const user = database.define('user', {
         type: Sequelize.STRING,
         allowNull: false,        
     },
+    userImageLink: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    }
 });
 
 module.exports = user;
