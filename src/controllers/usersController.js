@@ -34,9 +34,9 @@ class UserController {
         const userData = req.body;
         try {
             const newUser = await User.create(userData);
-            return res.status(200).json(newUser);
+            return res.status(200).json({status: 200 , message: "Usuário criado com sucesso!" , data: newUser});
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({status: 500, message: "Erro ao criar usuário!" , data: error.message});
         }
     }
 

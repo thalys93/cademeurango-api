@@ -8,14 +8,36 @@ const user = database.define('user', {
         primaryKey: true,              
         
     },
-    userName: {
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+    },
+    isAdmin: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+    },
+    isAuthor: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+    },    
+    name: {
         type: Sequelize.STRING,
         allowNull: false,        
     },
-    userImageLink: {
+    role: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    terms: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+    },    
+    imageLink: {
         type: Sequelize.STRING,
         allowNull: true,
-    }
+    },
+
 });
 
 module.exports = user;

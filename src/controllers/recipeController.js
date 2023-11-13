@@ -43,7 +43,7 @@ class RecipeController {
 
         try {
             const newRecipe = await Recipe.create(recipe);
-            return res.status(200).json(newRecipe);
+            return res.status(200).json({status: 200 , message: "Receita criada com sucesso!" , data: newRecipe});
         } catch (error) {
             return res.status(500).json(error.message);
         }
