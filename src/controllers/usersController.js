@@ -44,12 +44,7 @@ class UserController {
         const { UUID } = req.params;
         const newData = req.body;
         try {
-            for (const key in newData) {
-                if (newData[key] === "" || newData[key] === null || newData[key].trim() === "") {
-                    return res.status(400).json({ message: `Não é possível fazer uma requisição com campos vazios` });
-                }
-            }
-
+                                    
             if (!newData) {
                 return res.status(400).json({ message: `Você não pode fazer uma requisição vazia` });
             } else {
