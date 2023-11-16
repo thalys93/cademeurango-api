@@ -28,6 +28,10 @@ const user = database.define('user', {
     role: {
         type: Sequelize.STRING,
         allowNull: false,
+    },    
+    biography: {
+        type: Sequelize.TEXT,
+        allowNull: true,
     },
     terms: {
         type: Sequelize.BOOLEAN,
